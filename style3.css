@@ -1,0 +1,46 @@
+/* .background {
+  background: url(../img/veterans-day-g4e2934289_1920.jpg);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.overlay {
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+} */
+
+body {
+  background:  url("../img/veterans-day-g4e2934289_1920.png") no-repeat fixed center;
+}
+
+.card {
+  background-color: transparent;
+  color: white;
+  border-color: #868686;
+}
+
+.mt-6 {
+  margin-top: 7rem;
+}
+
+.display-7 {
+  font-size: 1.3rem;
+}
+
+.card-body a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar {
+  border-bottom: 1px solid #830101;
+  background-color: transparent !important;
+}
+
