@@ -1,0 +1,74 @@
+@page
+@model AddAmmoModel
+@{
+    ViewData["Title"] = "Add Ammo";
+}
+
+<div class="container text-white">
+    <div class="form-group row justify-content-center">
+        <div class="col-sm-10 col-md-8 col-lg-6">
+            <p class="display-6 mt-5 mb-0">Add Ammo</p>
+            <p class="mt-0"><hr class="bg-secondary" /></p>
+        </div>
+    </div>
+
+    <form method="post" class="form">
+        <div class="form-group row justify-content-md-center">
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <input asp-for="Input.Manufacturer" class="form-control floating_input" placeholder="Manufacturer" autofocus>
+                <label asp-for="Input.Manufacturer" class="floating_label" data-content="Manufacturer *">
+                    <span class="hidden--visually">Manufacturer</span>
+                </label>
+                <span asp-validation-for="Input.Manufacturer" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <select asp-for="Input.GunTypeId" asp-items="Model.GunTypes" class="form-control form-control-2">
+                    <option value="">[Select Gun Type] *</option>
+                </select>
+                <span asp-validation-for="Input.GunTypeId" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <select asp-for="Input.CaliberId" asp-items="Model.Calibers" class="form-control form-control-2">
+                    <option value="">[Select Caliber] *</option>
+                </select>
+                <span asp-validation-for="Input.CaliberId" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <input asp-for="Input.Rounds" class="form-control floating_input" placeholder="Rounds">
+                <label asp-for="Input.Rounds" class="floating_label" data-content="Rounds *">
+                    <span class="hidden--visually">Rounds</span>
+                </label>
+                <span asp-validation-for="Input.Rounds" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <input asp-for="Input.PurchaseDate" class="form-control floating_input" type="date">
+                <label asp-for="Input.PurchaseDate" class="floating_label" data-content="Purchase Date *">
+                    <span class="hidden--visually">Purchase Date</span>
+                </label>
+                <span asp-validation-for="Input.PurchaseDate" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <input asp-for="Input.Price" class="form-control floating_input" placeholder="Price">
+                <label asp-for="Input.Price" class="floating_label" data-content="Price">
+                    <span class="hidden--visually">Price</span>
+                </label>
+                <span asp-validation-for="Input.Price" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-7">
+                <button type="submit" class="btn btn-primary btn-block w-100">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

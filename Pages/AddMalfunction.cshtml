@@ -1,0 +1,62 @@
+@page
+@model AddMalfunctionModel
+@{
+    ViewData["Title"] = "Add Malfunction";
+}
+
+<div class="container text-white">
+    <div class="form-group row justify-content-center">
+        <div class="col-sm-10 col-md-8 col-lg-6">
+            <p class="display-6 mt-5 mb-0">Add Malfunction</p>
+            <p class="mt-0"><hr class="bg-secondary" /></p>
+        </div>
+    </div>
+
+    <form method="post" class="form">
+        <div class="form-group row justify-content-md-center">
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <select asp-for="Input.FirearmId" asp-items="Model.Firearms" class="form-control form-control-2">
+                    <option value="">[Select Firearm] *</option>
+                </select>
+                <span asp-validation-for="Input.FirearmId" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <select asp-for="Input.MalfunctionTypeId" asp-items="Model.MalfunctionTypes" class="form-control form-control-2">
+                    <option value="">[Select Malfunction Type] *</option>
+                </select>
+                <span asp-validation-for="Input.MalfunctionTypeId" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <select asp-for="Input.AmmoId" asp-items="Model.Ammunitions" class="form-control form-control-2">
+                    <option value="">[Select Ammo] *</option>
+                </select>
+                <span asp-validation-for="Input.AmmoId" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <input asp-for="Input.MalfunctionDate" class="form-control floating_input" type="date">
+                <label asp-for="Input.MalfunctionDate" class="floating_label" data-content="Date *">
+                    <span class="hidden--visually">Date</span>
+                </label>
+                <span asp-validation-for="Input.MalfunctionDate" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-7 mb-3">
+                <textarea asp-for="Input.Details" class="form-control form-control-2" rows="5" placeholder="Details"></textarea>
+                <span asp-validation-for="Input.Details" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-7">
+                <button type="submit" class="btn btn-primary btn-block w-100">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
