@@ -1,0 +1,38 @@
+@page
+@model Gunventory.Pages.LoginModel
+@{
+    Layout = "_LayoutNoNav";
+}
+
+<div class="loginbox box-shadow bg-tertiary">
+    <img src="~/img/fingerprint.png" class="avatar" alt="">
+    <div class="display-6 text-white text-center mb-4">Employee Login</div>
+    <form method="post" class="form">
+        <div class="form-group row justify-content-md-center">
+            <div class="col-sm-12 pb-3">
+                <input asp-for="Username" class="form-control floating_input" placeholder="Username" autofocus>
+                <label asp-for="Username" class="floating_label" data-content="Username">
+                    <span class="hidden--visually">Username</span>
+                </label>
+            </div>
+
+            <div class="col-sm-12 pb-3">
+                <input asp-for="Password" type="password" class="form-control floating_input" placeholder="Password">
+                <label asp-for="Password" class="floating_label" data-content="Password">
+                    <span class="hidden--visually">Password</span>
+                </label>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.StatusMsg))
+        {
+            <div class="status text-danger mb-3 text-center">
+                @Model.StatusMsg
+            </div>
+        }
+
+        <div>
+            <button type="submit" class="btn btn-primary btn-block w-100" >Login</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,52 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <h2 class="display-6 text-center text-white">Inventory</h2>
+            <table class="table table-dark table-hover" id="job-table">
+                <tbody>
+                    @if (Model.Firearms != null && Model.Firearms.Any())
+                    {
+                        foreach (var firearm in Model.Firearms)
+                        {
+                            <tr onclick="location.href='/FirearmDetails?id=@firearm.Id'" style="cursor: pointer;">
+                                <td colspan="4">
+                                    <span class="float-left mr-3">
+                                        <img class="thumbnail" src="@firearm.ImgURL" style="max-width: 100px;">
+                                    </span>
+                                    <span>
+                                        <div class="h3 d-block mb-0">@firearm.Model</div>
+                                        <div>@firearm.Manufacturer</div>
+                                        <div>@firearm.Caliber</div>
+                                        <div><i class="mr-3 bi bi-calendar"></i>@firearm.PurchaseDate.ToString("yyyy-MM-dd")</div>
+
+                                        @if (firearm.LastShootingActivity.HasValue)
+                                        {
+                                            <div><i class="mr-3 bi bi-bullseye"></i>@firearm.LastShootingActivity.Value.ToString("yyyy-MM-dd")</div>
+                                        }
+
+                                        @if (firearm.LastMaintenance.HasValue)
+                                        {
+                                            <div><i class="mr-3 bi bi-eyedropper"></i>@firearm.LastMaintenance.Value.ToString("yyyy-MM-dd")</div>
+                                        }
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-white">No inventory found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

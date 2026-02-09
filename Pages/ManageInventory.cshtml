@@ -1,0 +1,90 @@
+@page
+@model ManageInventoryModel
+@{
+    ViewData["Title"] = "Add Inventory";
+}
+
+<div class="my-5"></div>
+<div class="container">
+    <div class="d-flex align-self-center" style="height: calc(100vh - 75px);">
+        <div class="row">
+            <div class="col-6 col-md-4 d-flex justify-content-center">
+                <div class="card mb-5 p-1 bg-dark border-secondary" style="width: 15rem; height: 10rem;">
+                    <i class="bi bi-plus-square text-white"></i>
+                    <div class="card-body">
+                        <div class="text-center mb-2">
+                            <img src="~/img/handgun.png" alt="" width="50px">
+                        </div>
+                        <h5 class="card-title text-center text-uppercase my-auto text-white">Add Firearm</h5>
+                        <a asp-page="/AddFirearm" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 d-flex justify-content-center">
+                <div class="card mb-5 p-1 bg-dark border-secondary" style="width: 15rem; height: 10rem;">
+                    <i class="bi bi-plus-square text-white"></i>
+                    <div class="card-body">
+                        <div class="text-center mb-2">
+                            <img src="~/img/ammo.png" alt="" width="50px">
+                        </div>
+                        <h5 class="card-title text-center text-uppercase my-auto text-white">Add Ammo</h5>
+                        <a asp-page="/AddAmmo" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 d-flex justify-content-center">
+                <div class="card mb-5 p-1 bg-dark border-secondary" style="width: 15rem; height: 10rem;">
+                    <i class="bi bi-plus-square text-white"></i>
+                    <div class="card-body">
+                        <div class="text-center mb-2">
+                            <img src="~/img/accessory.png" alt="" width="120px">
+                        </div>
+                        <h5 class="card-title text-center text-uppercase my-auto text-white">Add Accessory</h5>
+                        <a asp-page="/AddAccessory" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 d-flex justify-content-center">
+                <div class="card mb-5 p-1 bg-dark border-secondary" style="width: 15rem; height: 10rem;">
+                    <i class="bi bi-plus-square text-white"></i>
+                    <div class="card-body">
+                        <div class="text-center mb-2">
+                            <img src="~/img/shooting.png" alt="" width="40px">
+                        </div>
+                        <h5 class="card-title text-center text-uppercase my-auto text-white">Add Shooting</h5>
+                        <a asp-page="/AddShooting" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 d-flex justify-content-center">
+                <div class="card mb-5 p-1 bg-dark border-secondary" style="width: 15rem; height: 10rem;">
+                    <i class="bi bi-plus-square text-white"></i>
+                    <div class="card-body">
+                        <div class="text-center mb-2">
+                            <img src="~/img/maintenance.png" alt="" width="22px">
+                        </div>
+                        <h5 class="card-title text-center text-uppercase my-auto text-white">Add Maintenance</h5>
+                        <a asp-page="/AddMaintenance" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 d-flex justify-content-center">
+                <div class="card mb-5 p-1 bg-dark border-secondary" style="width: 15rem; height: 10rem;">
+                    <i class="bi bi-plus-square text-white"></i>
+                    <div class="card-body">
+                        <div class="text-center mb-2">
+                            <img src="~/img/malfunction.png" alt="" width="40px">
+                        </div>
+                        <h5 class="card-title text-center text-uppercase my-auto text-white">Add Malfunction</h5>
+                        <a asp-page="/AddMalfunction" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

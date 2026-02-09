@@ -1,0 +1,24 @@
+# .NET
+bin/
+obj/
+*.user
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Backup
+php_app/
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal

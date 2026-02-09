@@ -1,0 +1,254 @@
+@page
+@model FirearmDetailsModel
+@{
+    ViewData["Title"] = "Firearm Details";
+}
+
+<div class="container-xl text-white">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center my-4">
+                    <h2>Firearm Details</h2>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <span class="d-block mb-3">
+                        <div class="h3 d-block mb-0">@Model.Firearm.Model</div>
+                        <div>@Model.Firearm.Manufacturer</div>
+                        <div class="mb-3">@Model.Firearm.Caliber.Name</div>
+                        <div><i class="bi bi-calendar mr-3"></i>@Model.Firearm.PurchaseDate.ToString("yyyy-MM-dd")</div>
+
+                        @if (Model.ShootingActivities.Any())
+                        {
+                            <div><i class="mr-3 bi bi-bullseye"></i>@Model.ShootingActivities.First().ShootingDate.ToString("yyyy-MM-dd")</div>
+                        }
+
+                        @if (Model.MaintenanceRecords.Any())
+                        {
+                            <div><i class="mr-3 bi bi-eyedropper"></i>@Model.MaintenanceRecords.First().Date.ToString("yyyy-MM-dd")</div>
+                        }
+
+                        @if (Model.Malfunctions.Any())
+                        {
+                            <div><i class="mr-3 bi bi-exclamation-triangle"></i>@Model.Malfunctions.First().MalfunctionDate?.ToString("yyyy-MM-dd")</div>
+                        }
+                    </span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-3">
+                <div class="col-md-12">
+                    <span class="float-left">
+                        <a class="btn btn-primary btn-small text-light mr-2" asp-page="/EditFirearm" asp-route-id="@Model.Firearm.Id"><i class="mdi mdi-small mdi-square-edit-outline"></i></a>
+                    </span>
+                    <span class="float-right">
+                        <a class="btn btn-danger btn-small text-light" asp-page="/DeleteFirearm" asp-route-id="@Model.Firearm.Id"><i class="mdi mdi-small mdi-trash-can-outline"></i></a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Stats / Details -->
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <h2>Stats / Details</h2>
+                </div>
+            </div>
+
+            <div class="row my-1">
+                <div class="col-8 col-lg-9 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    Purchase Date:
+                </div>
+                <div class="col-4 col-lg-3 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    @Model.Firearm.PurchaseDate.ToString("yyyy-MM-dd")
+                </div>
+            </div>
+
+            <div class="row my-1">
+                <div class="col-8 col-lg-9 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    Purchase Price:
+                </div>
+                <div class="col-4 col-lg-3 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    @Model.Firearm.Price.ToString("C")
+                </div>
+            </div>
+
+            <div class="row my-1">
+                <div class="col-8 col-lg-9 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    Total With Accessories:
+                </div>
+                <div class="col-4 col-lg-3 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    @Model.GrandTotal.ToString("C")
+                </div>
+            </div>
+
+            <div class="row my-1">
+                <div class="col-8 col-lg-9 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    Total Rounds Fired:
+                </div>
+                <div class="col-4 col-lg-3 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    @Model.TotalRoundsFired
+                </div>
+            </div>
+
+            <!-- Available Ammo -->
+            @if (Model.AvailableAmmo.Any(a => a.Available > 0))
+            {
+                <div class="row">
+                    <div class="col-md-12 mt-5">
+                        <h2>Available Ammo</h2>
+                    </div>
+                </div>
+
+                @foreach (var ammo in Model.AvailableAmmo.Where(a => a.Available > 0))
+                {
+                    <div class="row my-1">
+                        <div class="col-8 col-lg-9 shaded-row bg-dark p-2 border-bottom border-secondary">
+                            @ammo.Manufacturer
+                        </div>
+                        <div class="col-4 col-lg-3 shaded-row bg-dark p-2 border-bottom border-secondary">
+                            @ammo.Available
+                        </div>
+                    </div>
+                }
+            }
+
+            <!-- Shooting Activity -->
+            @if (Model.ShootingActivities.Any())
+            {
+                <div class="row">
+                    <div class="col-md-12 mt-5">
+                        <h2>Shooting Activity</h2>
+                    </div>
+                </div>
+
+                @foreach (var activity in Model.ShootingActivities)
+                {
+                    <div class="row my-1">
+                        <div class="col-4 col-lg-5 shaded-row bg-dark p-2 border-bottom border-secondary">
+                            <i class="bi bi-bullseye mr-2"></i>@activity.ShootingDate.ToString("yyyy-MM-dd")
+                        </div>
+                        <div class="col-4 col-lg-4 shaded-row bg-dark p-2 border-bottom border-secondary">
+                            @activity.ShootingType.Name
+                        </div>
+                        <div class="col-3 col-lg-2 shaded-row bg-dark p-2 border-bottom border-secondary">
+                            @activity.RoundsFired Rds
+                        </div>
+                        <div class="col-1 col-lg-1 shaded-row bg-dark p-2 border-bottom border-secondary text-right">
+                            <a asp-page="/DeleteShootingActivity" asp-route-id="@activity.Id"><i class="mdi mdi-small mdi-trash-can-outline text-danger"></i></a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="col-lg-5">
+            <div class="row">
+                <div class="col-md-12 my-4">
+                    <h2>Image</h2>
+                </div>
+
+                <span class="ml-3">
+                    <img class="img-fluid thumbnail" src="@Model.Firearm.ImgURL">
+                </span>
+
+                @if (!string.IsNullOrEmpty(Model.Firearm.DocURL))
+                {
+                    <div class="row w-100">
+                        <div class="col-md-12 mt-5">
+                            <h2>Documents</h2>
+                        </div>
+
+                        <div class="ml-3">
+                            <a class="text-white text-decoration-none" href="@Model.Firearm.DocURL" target="_blank"><i class="bi bi-file-earmark mr-2"></i>Document</a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (Model.Accessories.Any())
+            {
+                <div class="row">
+                    <div class="col-md-12 mt-5">
+                        <h2>Accessories</h2>
+                    </div>
+                </div>
+
+                @foreach (var accessory in Model.Accessories)
+                {
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 my-2">
+                            <span class="float-left mr-3" onclick="location.href='/AccessoryDetails?id=@accessory.Id'" style="cursor: pointer;">
+                                <img class="img-fluid thumbnail-sm" src="@accessory.ImgURL" style="max-width: 60px;">
+                            </span>
+
+                            <span class="d-block">
+                                <div>@accessory.Model</div>
+                                <div>@accessory.Manufacturer</div>
+                                <div>@accessory.Price.ToString("C")</div>
+                                <div>
+                                    <a class="btn btn-secondary btn-sm text-light mr-2" asp-page="/EditAccessory" asp-route-id="@accessory.Id"><i class="mdi mdi-small mdi-square-edit-outline"></i></a>
+                                    <a class="btn btn-danger btn-sm text-light" asp-page="/DeleteAccessory" asp-route-id="@accessory.Id"><i class="mdi mdi-small mdi-trash-can-outline"></i></a>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (Model.MaintenanceRecords.Any())
+{
+    <div class="container text-white">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center mt-5">
+                <h2>Maintenance Activity</h2>
+            </div>
+        </div>
+
+        @foreach (var record in Model.MaintenanceRecords)
+        {
+            <div class="row justify-content-center my-1">
+                <div class="col-8 col-md-5 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    <i class="bi bi-eyedropper mr-2"></i>@record.Date.ToString("yyyy-MM-dd")
+                </div>
+                <div class="col-3 col-md-2 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    @record.MaintenanceType.Name
+                </div>
+                <div class="col-1 col-md-1 shaded-row bg-dark p-2 border-bottom border-secondary text-right">
+                    <a asp-page="/DeleteMaintenance" asp-route-id="@record.Id"><i class="mdi mdi-small mdi-trash-can-outline text-danger"></i></a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@if (Model.Malfunctions.Any())
+{
+    <div class="container text-white">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center mt-5">
+                <h2>Malfunctions</h2>
+            </div>
+        </div>
+
+        @foreach (var malfunction in Model.Malfunctions)
+        {
+            <div class="row justify-content-center my-1">
+                <div class="col-8 col-md-5 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    <i class="bi bi-exclamation-triangle mr-2"></i>@malfunction.MalfunctionDate?.ToString("yyyy-MM-dd")
+                </div>
+                <div class="col-3 col-md-2 shaded-row bg-dark p-2 border-bottom border-secondary">
+                    @malfunction.MalfunctionType.Name
+                </div>
+                <div class="col-1 col-md-1 shaded-row bg-dark p-2 border-bottom border-secondary text-right">
+                    <a asp-page="/DeleteMalfunction" asp-route-id="@malfunction.Id"><i class="mdi mdi-small mdi-trash-can-outline text-danger"></i></a>
+                </div>
+            </div>
+        }
+    </div>
+}
